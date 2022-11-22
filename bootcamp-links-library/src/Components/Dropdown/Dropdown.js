@@ -3,6 +3,7 @@ import React from "react";
 function Dropdown(props) {
   return [
     <input
+      className={props.className}
       onChange={props.handleChange}
       list={props.list}
       name={props.name}

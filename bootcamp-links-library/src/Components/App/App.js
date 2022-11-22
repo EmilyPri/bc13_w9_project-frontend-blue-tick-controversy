@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./App.css";
 // import Arrow from "../Arrow/Arrow";
 import Banner from "../Banner/Banner";
 import Button from "../Button/Button";
@@ -95,92 +96,103 @@ function App() {
     };
     setInputSection(inpSectionObj);
     inputSectionPost(inputSection);
-    console.log(inputSection)
+    console.log(inputSection);
   }
 
-  async function inputSectionPost(data){
+  async function inputSectionPost(data) {
     const response = await fetch("http://localhost:3001/api/links/", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(data)
-    })
-    const result = await response.json()
-    return result
+      body: JSON.stringify(data),
+    });
+    const result = await response.json();
+    return result;
   }
 
-
-
-
-
   return [
-    <Header h1="BOOTCAMP LINKS LIBRARY" />,
-    <div className="dropdown-container">
-      <Dropdown
-        handleChange={dropWeekChange}
-        placeholder="SEARCH BY WEEK"
-        list="dropWeek"
-        name="dropWeek"
-        dataId="dropWeek"
-        value1="1"
-        value2="2"
-      />
-      <RadioButtons handleChange={selectRadioChange} />
-      <Dropdown
-        handleChange={dropSubjectChange}
-        placeholder="SEARCH BY SUBJECT"
-        list="dropSubject"
-        name="dropSubject"
-        dataId="dropSubject"
-        value1="React"
-        value2="CSS"
-      />
-    </div>,
-    <div className="button-go-container">
-      <Button buttonText="GO" buttonClick={findBySectionButton} />
-    </div>,
-    <div className="cards-container">
-      {cardsArr.map((card) => {
-        return (
-          <Card key={card.link_id}
-            subjectIcon={card.icon}
-            title={card.title}
-            description={card.description}
-            link={card.link}
+    <div className="app-container">
+      <div className="header-container">
+        <Header h1="BOOTCAMP LINKS LIBRARY" />
+        <div className="dropdown-container">
+          <Dropdown
+            className="dropWeek"
+            handleChange={dropWeekChange}
+            placeholder="SEARCH BY WEEK"
+            list="dropWeek"
+            name="dropWeek"
+            dataId="dropWeek"
+            value1="1"
+            value2="2"
           />
-        );
-      })}
-    </div>,
-    <div className="banner-container">
-      <Banner />
-    </div>,
-    <div className="input-section-container">
-      <Dropdown
-        handleChange={dropInpWeekChange}
-        placeholder="CHOOSE WEEK"
-        list="dropInpWeek"
-        name="dropInpWeek"
-        dataId="dropInpWeek"
-        value1="Abdi"
-        value2="Miko"
-      />
-      <Input handleChange={inpTitleChange} placeholder="INSERT TITLE" />
-      <Dropdown
-        handleChange={dropInpLanguageChange}
-        placeholder="CHOOSE LANGUAGE"
-        list="dropInpLanguage"
-        name="dropInpLanguage"
-        dataId="dropInpLanguage"
-        value1="Api"
-        key1="1"
-      />
-      <Input handleChange={inpLinkChange} placeholder="PASTE LINK" />
-      <Input
-        handleChange={inpDescriptionChange}
-        placeholder="ADD DESCRIPTION"
-      />
-      <Button buttonText="Submit" buttonClick={inpSectionButton} />
+          <RadioButtons handleChange={selectRadioChange} />
+          <Dropdown
+            className="dropSubject"
+            handleChange={dropSubjectChange}
+            placeholder="SEARCH BY SUBJECT"
+            list="dropSubject"
+            name="dropSubject"
+            dataId="dropSubject"
+            value1="React"
+            value2="CSS"
+          />
+        </div>
+        <div className="button-go-container">
+          <Button buttonText="GO" buttonClick={findBySectionButton} />
+        </div>
+      </div>
+      <div className="cards-container">
+        {cardsArr.map((card) => {
+          return (
+            <Card
+              key={card.link_id}
+              subjectIcon={card.icon}
+              title={card.title}
+              description={card.description}
+              link={card.link}
+            />
+          );
+        })}
+      </div>
+      <div className="footer-container">
+        <div className="banner-container">
+          <Banner />
+        </div>
+        <div className="input-section-container">
+          <div className="input-section-top">
+            <Dropdown
+              handleChange={dropInpWeekChange}
+              placeholder="CHOOSE WEEK"
+              list="dropInpWeek"
+              name="dropInpWeek"
+              dataId="dropInpWeek"
+              value1="Abdi"
+              value2="Miko"
+            />
+            <Input handleChange={inpTitleChange} placeholder="INSERT TITLE" />
+            <Dropdown
+              handleChange={dropInpLanguageChange}
+              placeholder="CHOOSE LANGUAGE"
+              list="dropInpLanguage"
+              name="dropInpLanguage"
+              dataId="dropInpLanguage"
+              value1="Api"
+              key1="1"
+            />
+          </div>
+          <div className="input-section-middle">
+            <Input handleChange={inpLinkChange} placeholder="PASTE LINK" />
+          </div>
+          <div className="input-section-bottom">
+            <Input
+              handleChange={inpDescriptionChange}
+              placeholder="ADD DESCRIPTION"
+            />
+            <Button buttonText="Submit" buttonClick={inpSectionButton} />
+          </div>
+        </div>
+      </div>
     </div>,
   ];
 }

@@ -1,0 +1,124 @@
+.app-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    /* width: 100%; */
+}
+input::placeholder{
+    color: #193441;
+    font-weight: 600;
+    opacity: 0.6;
+}
+
+.header-container{
+    display: flex;
+    flex-direction: column;
+    top: 7vh;
+    align-items: center;
+    position: fixed;
+    color: #193441
+}
+.h1-header{
+    background-color: #D1DBBD;
+}
+.dropWeek{
+    width: 165px;
+}
+.dropSubject{
+    width: 165px;
+}
+
+.cards-container{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 30vh;
+    left: 5vw;
+    padding-right: 5vw;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 5vw;
+}
+.banner-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    width: 100vw;
+    height: 40px;
+    background-color: #D1DBBD;
+    font-size: larger;
+    margin-bottom: 15px;
+    
+}
+.footer-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    bottom: 20vh;
+    color: #193441
+
+    
+}
+.input-section-container{
+    /* padding: 10px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 11vh;
+    width: 90vw;
+    background-color: #fcfff5;
+    border-radius: 6px;
+}
+.input-section-top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    /* gap: 3%; */
+    padding: 10px;
+    margin: 0 auto;
+    color: #193441
+    
+}
+.input-section-top input{
+    width: 30%;
+    background-color: #91aa9d;
+    color: black;
+}
+
+.input-section-middle{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    padding: 10px;
+    margin: 0 auto;
+    color: #193441
+
+}
+.input-section-middle input{
+    width: 100%;
+    
+}
+.input-section-bottom{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    gap:1%;
+    width: 90%;
+    margin: 0 auto;
+    color: #193441
+}
+.input-section-bottom input{
+    width: 90%;
+}
+
+.input-section-bottom button{
+    width: 10%;
+    color: #193441
+}
+
