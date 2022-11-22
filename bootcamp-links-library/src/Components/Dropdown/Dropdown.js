@@ -10,8 +10,7 @@ function Dropdown(props) {
     />,
 
     <datalist id={props.dataId}>
-      <option value={props.value1} />
-      <option value={props.value2} />
+      <option key={props.key1} value={props.value1}/>
     </datalist>,
   ];
 }

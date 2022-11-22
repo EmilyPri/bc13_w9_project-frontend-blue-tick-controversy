@@ -11,8 +11,10 @@ import RadioButtons from "../RadioButtons/RadioButtons";
 function App() {
   const [dropWeek, setDropWeek] = useState("");
   const [dropSubject, setDropSubject] = useState("");
-  const [findBySection, setFindBySection] = useState([]);
+  const [findBySection, setFindBySection] = useState("");
   const [selectRadio, setSelectRadio] = useState("");
+
+  const [cardsArr, setCardsArr] = useState([]);
 
   const [dropInpWeek, setDropInpWeek] = useState("");
   const [dropInpLanguage, setDropInpLanguage] = useState("");
@@ -46,7 +48,6 @@ function App() {
   function selectRadioChange(e) {
     setSelectRadio(e.target.value);
   }
-  console.log(selectRadio);
 
   // function findBySectionButton(){
   //   if(selectRadio==="week"){
@@ -63,22 +64,55 @@ function App() {
 
   function findBySectionButton() {
     if (selectRadio === "week") {
-      setFindBySection(dropWeek);
+      console.log(dropWeek);
+      weekFetch(dropWeek);
     } else {
-      setFindBySection(dropSubject);
+      subjectFetch(dropSubject);
     }
+  }
+
+  async function weekFetch(week) {
+    const response = await fetch(`http://localhost:3001/api/links/${week}`);
+    const data = await response.json();
+    setCardsArr(data.payload);
+  }
+  console.log(cardsArr);
+  async function subjectFetch(subject) {
+    const response = await fetch(
+      `http://localhost:3001/api/links?subject=${subject}`
+    );
+    const data = await response.json();
+    setCardsArr(data.payload);
   }
 
   function inpSectionButton() {
     let inpSectionObj = {
-      week: dropInpWeek,
-      title: inpTitle,
-      language: dropInpLanguage,
       link: inpLink,
+      title: inpTitle,
       description: inpDescription,
+      week: dropInpWeek,
+      subject: dropInpLanguage,
     };
-    setInputSection([...inputSection, inpSectionObj]);
+    setInputSection(inpSectionObj);
+    inputSectionPost(inputSection);
+    console.log(inputSection)
   }
+
+  async function inputSectionPost(data){
+    const response = await fetch("http://localhost:3001/api/links/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+    const result = await response.json()
+    return result
+  }
+
+
+
+
 
   return [
     <Header h1="BOOTCAMP LINKS LIBRARY" />,
@@ -89,30 +123,34 @@ function App() {
         list="dropWeek"
         name="dropWeek"
         dataId="dropWeek"
-        value1="Abdi"
-        value2="Miko"
+        value1="1"
+        value2="2"
       />
       <RadioButtons handleChange={selectRadioChange} />
       <Dropdown
         handleChange={dropSubjectChange}
         placeholder="SEARCH BY SUBJECT"
-        list="dropWeek"
-        name="dropWeek"
-        dataId="dropWeek"
-        value1="Abdi"
-        value2="Miko"
+        list="dropSubject"
+        name="dropSubject"
+        dataId="dropSubject"
+        value1="React"
+        value2="CSS"
       />
     </div>,
     <div className="button-go-container">
       <Button buttonText="GO" buttonClick={findBySectionButton} />
     </div>,
     <div className="cards-container">
-      <Card
-        subjectIcon="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg"
-        title="TEST TITLE"
-        link="TESTLINK"
-        description="TEST DESCRIPTION TEST DESCRIPTION TEST DESCRIPTION"
-      />
+      {cardsArr.map((card) => {
+        return (
+          <Card key={card.link_id}
+            subjectIcon={card.icon}
+            title={card.title}
+            description={card.description}
+            link={card.link}
+          />
+        );
+      })}
     </div>,
     <div className="banner-container">
       <Banner />
@@ -134,8 +172,8 @@ function App() {
         list="dropInpLanguage"
         name="dropInpLanguage"
         dataId="dropInpLanguage"
-        value1="Abdi"
-        value2="Miko"
+        value1="Api"
+        key1="1"
       />
       <Input handleChange={inpLinkChange} placeholder="PASTE LINK" />
       <Input
