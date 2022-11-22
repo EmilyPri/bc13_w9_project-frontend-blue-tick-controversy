@@ -7,6 +7,16 @@
     height: 30vh;
     width: 300px;
     background-color: #fcfff5;
+    opacity: 0.7;
+}
+.card-container:hover{
+    opacity: 1;
+    cursor: pointer;
+    transform: scale(1.1);
+    border: 1px solid #3E606F;
+    -webkit-box-shadow: 0px 5px 15px 5px #193441; 
+box-shadow: 0px 5px 15px 5px #193441;
+    
 }
 .card-top{
     display: flex;

@@ -39,6 +39,7 @@ input::placeholder{
     flex-direction: row;
     flex-wrap: nowrap;
     gap: 5vw;
+    
 }
 .banner-container{
     display: flex;
