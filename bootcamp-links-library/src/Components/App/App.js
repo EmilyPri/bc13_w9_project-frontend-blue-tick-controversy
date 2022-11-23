@@ -110,6 +110,7 @@ function App() {
     const result = await response.json();
     return result;
   }
+  
  const ref = useRef(null)
  function scroll(scrollOffset){
   ref.current.scrollLeft += scrollOffset
@@ -193,8 +194,9 @@ function App() {
         })}
       </div>
       <div className="scroll-buttons">
-      <button onClick={()=>scroll(-500)}>Scroll Left</button>
-      <button onClick={()=>scroll(500)}>Scroll Right</button>
+        <Button buttonClick={()=>scroll(-500)} buttonText="<"/>
+      <Button buttonClick={()=>scroll(500)} buttonText=">"/>
+      
     
       </div>
       <div className="footer-container">

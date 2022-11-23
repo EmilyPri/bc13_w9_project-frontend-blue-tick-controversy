@@ -28,7 +28,7 @@ button:hover{
 .header-container{
     display: flex;
     flex-direction: column;
-    top: 7vh;
+    top: 4vh;
     align-items: center;
     position: fixed;
     color: #193441;
@@ -89,8 +89,14 @@ button:hover{
 .scroll-buttons{
     display: flex;
     position: absolute;
-    top: 64vh;
+    bottom: 27vh;
+    gap: 20px;
 }
+.scroll-buttons button{
+    background-color: #fcfff5;
+    font-weight: 900;
+}
+
 .banner-container{
     display: flex;
     align-items: center;
@@ -108,7 +114,7 @@ button:hover{
     flex-direction: column;
     align-items: center;
     position: fixed;
-    bottom: 7vh;
+    bottom: 3vh;
     color: #193441
 
     
