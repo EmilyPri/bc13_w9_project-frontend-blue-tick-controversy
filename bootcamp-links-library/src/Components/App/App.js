@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./App.css";
 // import Arrow from "../Arrow/Arrow";
 import Banner from "../Banner/Banner";
@@ -110,7 +110,12 @@ function App() {
     const result = await response.json();
     return result;
   }
+ const ref = useRef(null)
+ function scroll(scrollOffset){
+  ref.current.scrollLeft += scrollOffset
+  ref.current.scrollLeft.behavior = "smooth"
 
+ }
   return [
     <div className="app-container">
       <div className="header-container">
@@ -172,7 +177,7 @@ function App() {
           <Button buttonText="GO" buttonClick={findBySectionButton} />
         </div>
       </div>
-      <div className="cards-container">
+      <div ref={ref} className="cards-container">
         {cardsArr.map((card) => {
           return (
             <Card
@@ -186,6 +191,11 @@ function App() {
             />
           );
         })}
+      </div>
+      <div className="scroll-buttons">
+      <button onClick={()=>scroll(-500)}>Scroll Left</button>
+      <button onClick={()=>scroll(500)}>Scroll Right</button>
+    
       </div>
       <div className="footer-container">
         <div className="banner-container">
