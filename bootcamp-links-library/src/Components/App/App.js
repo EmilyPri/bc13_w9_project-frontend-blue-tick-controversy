@@ -181,6 +181,8 @@ function App() {
               title={card.title}
               description={card.description}
               link={card.link}
+              buttonCopy={() => {navigator.clipboard.writeText(card.link)}}
+              buttonLink={() => {window.open(card.link, '_blank').focus()}}
             />
           );
         })}
@@ -217,7 +219,7 @@ function App() {
             <Input className="title-input" handleChange={inpTitleChange} placeholder="INSERT TITLE" />
             <Dropdown
               handleChange={dropInpLanguageChange}
-              placeholder="CHOOSE LANGUAGE"
+              placeholder="CHOOSE SUBJECT"
               list="dropInpLanguage"
               name="dropInpLanguage"
               dataId="dropInpLanguage"

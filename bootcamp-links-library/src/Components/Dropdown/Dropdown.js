@@ -10,7 +10,8 @@ function Dropdown(props) {
     //   placeholder={props.placeholder}
     // />,
 
-    <select id={props.dataId} className={props.className} onChange={props.handleChange} placeholder={props.placeholder}>
+    <select id={props.dataId} className={props.className} onChange={props.handleChange}>
+    <option value="">{props.placeholder}</option>
       <option value={props.value1}>{props.text1}</option>
       <option value={props.value2}>{props.text2}</option>
       <option value={props.value3}>{props.text3}</option>

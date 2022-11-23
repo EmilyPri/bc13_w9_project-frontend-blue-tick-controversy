@@ -7,8 +7,11 @@ function Card(props) {
         <div><img src={props.subjectIcon} /></div>
         <h1>{props.title}</h1>
       </div>
+      
       <div className="card-middle">
-        <p>{props.link}</p>
+        <button className="card-button" onClick={props.buttonCopy}>Copy to clipboard</button>
+        <button className="card-button" onClick={props.buttonLink}>Take me there</button>
+
       </div>
       <div className="card-bottom">
         <p>{props.description}</p>
