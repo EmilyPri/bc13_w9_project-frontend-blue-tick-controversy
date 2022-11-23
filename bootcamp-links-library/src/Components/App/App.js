@@ -140,7 +140,9 @@ function App() {
             value8="8"
             text8="Week 8"
           />
-          <RadioButtons handleChange={selectRadioChange} />
+          <div className="radio-buttons-container">
+            <RadioButtons handleChange={selectRadioChange} />
+          </div>
           <Dropdown
             className="dropSubject"
             handleChange={dropSubjectChange}
@@ -212,7 +214,7 @@ function App() {
               value8="8"
               text8="Week 8"
             />
-            <Input handleChange={inpTitleChange} placeholder="INSERT TITLE" />
+            <Input className="title-input" handleChange={inpTitleChange} placeholder="INSERT TITLE" />
             <Dropdown
               handleChange={dropInpLanguageChange}
               placeholder="CHOOSE LANGUAGE"

@@ -17,7 +17,21 @@ input::placeholder{
     top: 7vh;
     align-items: center;
     position: fixed;
-    color: #193441
+    color: #193441;
+    gap: 10px;
+    
+}
+.dropdown-container{
+    display: flex;
+    gap: 5px;
+    max-height: 20px;
+}
+.radio-buttons-container{
+    display: flex;
+    align-items: center;
+    color: #193441;
+    font-weight: 700;
+    gap: 25px;
 }
 .h1-header{
     background-color: #D1DBBD;
@@ -33,7 +47,7 @@ input::placeholder{
     display: flex;
     align-items: center;
     position: absolute;
-    top: 30vh;
+    top: 35vh;
     left: 5vw;
     padding-right: 5vw;
     flex-direction: row;
@@ -58,7 +72,7 @@ input::placeholder{
     flex-direction: column;
     align-items: center;
     position: fixed;
-    bottom: 20vh;
+    bottom: 10vh;
     color: #193441
 
     
@@ -68,10 +82,17 @@ input::placeholder{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 11vh;
+    height: 170px;
     width: 90vw;
     background-color: #fcfff5;
     border-radius: 6px;
+}
+
+#dropInpWeek{
+    width: 20%;
+}
+#dropInpLanguage{
+    width: 20%;
 }
 .input-section-top{
     display: flex;
@@ -81,11 +102,12 @@ input::placeholder{
     /* gap: 3%; */
     padding: 10px;
     margin: 0 auto;
-    color: #193441
+    color: #193441;
+    /* position: fixed; */
     
 }
 .input-section-top input{
-    width: 30%;
+    width: 50%;
     background-color: #91aa9d;
     color: black;
 }
