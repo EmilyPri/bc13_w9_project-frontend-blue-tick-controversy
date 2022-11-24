@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./App.css";
 // import Arrow from "../Arrow/Arrow";
 import Banner from "../Banner/Banner";
@@ -23,9 +23,12 @@ function App() {
   const [inpLink, setInpLink] = useState("");
   const [inpDescription, setInpDescription] = useState("");
   const [inputSection, setInputSection] = useState([]);
+  // const [like, setLike] = useState(false)
+  // const [likesCount, setLikesCount] = useState(0)
 
   function dropWeekChange(e) {
     setDropWeek(e.target.value);
+    console.log(dropWeek)
   }
   function dropSubjectChange(e) {
     setDropSubject(e.target.value);
@@ -33,6 +36,7 @@ function App() {
   function dropInpWeekChange(e) {
     setDropInpWeek(e.target.value);
   }
+  
   function dropInpLanguageChange(e) {
     setDropInpLanguage(e.target.value);
   }
@@ -76,14 +80,15 @@ function App() {
     const response = await fetch(`http://localhost:3001/api/links/${week}`);
     const data = await response.json();
     setCardsArr(data.payload);
+    // setLikesCount(data.payload.likes)
   }
-  console.log(cardsArr);
   async function subjectFetch(subject) {
     const response = await fetch(
       `http://localhost:3001/api/links?subject=${subject}`
     );
     const data = await response.json();
     setCardsArr(data.payload);
+    // setLikesCount(data.payload.likes);
   }
 
   function inpSectionButton() {
@@ -94,9 +99,8 @@ function App() {
       week: dropInpWeek,
       subject: dropInpLanguage,
     };
-    setInputSection(inpSectionObj);
-    inputSectionPost(inputSection);
-    console.log(inputSection);
+    console.log(inpSectionObj)
+    inputSectionPost(inpSectionObj);
   }
 
   async function inputSectionPost(data) {
@@ -111,6 +115,36 @@ function App() {
     return result;
   }
 
+  // async function patchLike(id){
+  //   if (like === false){
+  //     const response = await fetch(`http://localhost:3001/api/links/${id}`, {
+  //     method: "PATCH",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(likes: likesCount + 1 ),
+  //   });
+  //   const result = await response.json();
+  //   console.log(result)
+  //   setLike(true)
+  //   if (like === true){
+  //     const response = await fetch(`http://localhost:3001/api/links/${id}`, {
+  //     method: "PATCH",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(),
+  //   });
+  //   const result = await response.json();
+  //   console.log(result)
+  //   }
+  //   }
+  // }
+  
+ const ref = useRef(null)
+ function scroll(scrollOffset){
+  ref.current.scrollLeft += scrollOffset
+ }
   return [
     <div className="app-container">
       <div className="header-container">
@@ -140,7 +174,9 @@ function App() {
             value8="8"
             text8="Week 8"
           />
-          <RadioButtons handleChange={selectRadioChange} />
+          <div className="radio-buttons-container">
+            <RadioButtons handleChange={selectRadioChange} />
+          </div>
           <Dropdown
             className="dropSubject"
             handleChange={dropSubjectChange}
@@ -148,21 +184,21 @@ function App() {
             list="dropSubject"
             name="dropSubject"
             dataId="dropSubject"
-            value1="1"
+            value1="API"
             text1="API"
-            value2="2"
+            value2="CSS"
             text2="CSS"
-            value3="3"
+            value3="JavaScript"
             text3="JavaScript"
-            value4="4"
+            value4="React"
             text4="React"
-            value5="5"
+            value5="HTML"
             text5="HTML"
-            value6="6"
+            value6="General Dev"
             text6="General Dev"
-            value7="7"
+            value7="SQL"
             text7="SQL"
-            value8="8"
+            value8="Git"
             text8="Git"
           />
         </div>
@@ -170,7 +206,7 @@ function App() {
           <Button buttonText="GO" buttonClick={findBySectionButton} />
         </div>
       </div>
-      <div className="cards-container">
+      <div ref={ref} className="cards-container">
         {cardsArr.map((card) => {
           return (
             <Card
@@ -179,9 +215,19 @@ function App() {
               title={card.title}
               description={card.description}
               link={card.link}
+              // numLikes={card.likes}
+              buttonCopy={() => {navigator.clipboard.writeText(card.link)}}
+              buttonLink={() => {window.open(card.link, '_blank').focus()}}
+              // buttonLike={() => patchLike(card.link_id)}
             />
           );
         })}
+      </div>
+      <div className="scroll-buttons">
+        <Button buttonClick={()=>scroll(-500)} buttonText="<"/>
+      <Button buttonClick={()=>scroll(500)} buttonText=">"/>
+      
+    
       </div>
       <div className="footer-container">
         <div className="banner-container">
@@ -212,10 +258,10 @@ function App() {
               value8="8"
               text8="Week 8"
             />
-            <Input handleChange={inpTitleChange} placeholder="INSERT TITLE" />
+            <Input className="title-input" handleChange={inpTitleChange} placeholder="INSERT TITLE" />
             <Dropdown
               handleChange={dropInpLanguageChange}
-              placeholder="CHOOSE LANGUAGE"
+              placeholder="CHOOSE SUBJECT"
               list="dropInpLanguage"
               name="dropInpLanguage"
               dataId="dropInpLanguage"
