@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./App.css";
 // import Arrow from "../Arrow/Arrow";
 import Banner from "../Banner/Banner";
@@ -23,12 +23,12 @@ function App() {
   const [inpLink, setInpLink] = useState("");
   const [inpDescription, setInpDescription] = useState("");
   const [inputSection, setInputSection] = useState([]);
-  const [likes, setLikes] = useState([])
-  // const [likesCount, setLikesCount] = useState(0)
+  const [likes, setLikes] = useState([]);
+  const [likesCount, setLikesCount] = useState(0);
 
   function dropWeekChange(e) {
     setDropWeek(e.target.value);
-    console.log(dropWeek)
+    console.log(dropWeek);
   }
   function dropSubjectChange(e) {
     setDropSubject(e.target.value);
@@ -36,7 +36,7 @@ function App() {
   function dropInpWeekChange(e) {
     setDropInpWeek(e.target.value);
   }
-  
+
   function dropInpLanguageChange(e) {
     setDropInpLanguage(e.target.value);
   }
@@ -66,6 +66,10 @@ function App() {
   //     setFindBySection([...findBySection, findBySectionObj])
   //   }}
   //   console.log(findBySection)
+  // useEffect(()=>{
+  //   findBySection()
+
+  // }, [()=>{likesHandler()}])
 
   function findBySectionButton() {
     if (selectRadio === "week") {
@@ -80,7 +84,7 @@ function App() {
     const response = await fetch(`http://localhost:3001/api/links/${week}`);
     const data = await response.json();
     setCardsArr(data.payload);
-    setLikes([...data.payload])
+    setLikes([...data.payload]);
     // setLikesCount(data.payload.likes)
   }
 
@@ -106,7 +110,7 @@ function App() {
       week: dropInpWeek,
       subject: dropInpLanguage,
     };
-    console.log(inpSectionObj)
+    console.log(inpSectionObj);
     inputSectionPost(inpSectionObj);
   }
 
@@ -121,15 +125,17 @@ function App() {
     const result = await response.json();
     return result;
   }
-  async function likesHandler(data, id){
+  async function likesHandler(data, id) {
     const response = await fetch(`http://localhost:3001/api/links/${id}`, {
-                method: "PATCH",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify(data)});
-                const result = await response.json();
-                console.log(result)
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const result = await response.json();
+    console.log(likesCount);
+    setTimeout(findBySectionButton, 1000);
   }
 
   // async function patchLike(id){
@@ -158,11 +164,10 @@ function App() {
   //   }
   // }
 
-  
- const ref = useRef(null)
- function scroll(scrollOffset){
-  ref.current.scrollLeft += scrollOffset
- }
+  const ref = useRef(null);
+  function scroll(scrollOffset) {
+    ref.current.scrollLeft += scrollOffset;
+  }
   return [
     <div className="app-container">
       <div className="header-container">
@@ -235,18 +240,22 @@ function App() {
               link={card.link}
               numLikes={card.likes}
               buttonID={card.link_id}
-              buttonCopy={() => {navigator.clipboard.writeText(card.link)}}
-              buttonLink={() => {window.open(card.link, '_blank').focus()}}
-              handleLike={() => likesHandler({ likes: card.likes + 1}, card.link_id)}
+              buttonCopy={() => {
+                navigator.clipboard.writeText(card.link);
+              }}
+              buttonLink={() => {
+                window.open(card.link, "_blank").focus();
+              }}
+              handleLike={() =>
+                likesHandler({ likes: card.likes + 1 }, card.link_id)
+              }
             />
           );
         })}
       </div>
       <div className="scroll-buttons">
-        <Button buttonClick={()=>scroll(-500)} buttonText="<"/>
-      <Button buttonClick={()=>scroll(500)} buttonText=">"/>
-      
-    
+        <Button buttonClick={() => scroll(-500)} buttonText="<" />
+        <Button buttonClick={() => scroll(500)} buttonText=">" />
       </div>
       <div className="footer-container">
         <div className="banner-container">
@@ -277,7 +286,11 @@ function App() {
               value8="8"
               text8="Week 8"
             />
-            <Input className="title-input" handleChange={inpTitleChange} placeholder="INSERT TITLE" />
+            <Input
+              className="title-input"
+              handleChange={inpTitleChange}
+              placeholder="INSERT TITLE"
+            />
             <Dropdown
               handleChange={dropInpLanguageChange}
               placeholder="CHOOSE SUBJECT"
