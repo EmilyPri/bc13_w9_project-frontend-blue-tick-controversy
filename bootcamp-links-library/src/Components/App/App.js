@@ -111,7 +111,13 @@ function App() {
       subject: dropInpLanguage,
     };
     console.log(inpSectionObj);
-    inputSectionPost(inpSectionObj);
+    if (inpSectionObj.title.length > 35) {
+      alert("Title should be Max 35 characters long!");
+    } else if (inpSectionObj.description.length > 150) {
+      alert("Description should be Max 150 characters long!");
+    } else {
+      inputSectionPost(inpSectionObj);
+    }
   }
 
   async function inputSectionPost(data) {
