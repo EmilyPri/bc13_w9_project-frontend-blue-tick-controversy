@@ -14,7 +14,7 @@ function Card(props) {
       </div>
       <div className="card-bottom">
         <p>{props.description}</p>
-        <button onClick={props.handleLike}>Likes : {props.numLikes}</button>
+        {/* <button onClick={props.handleLike}>Likes : {props.numLikes}</button> */}
       </div>
     </div>,
   ];
