@@ -96,3 +96,17 @@ box-shadow: 0px 5px 15px 5px #193441;
     margin: 5px;
     font-size: clamp(0.9rem, 1vw, 1.2rem); 
 }
+.p-description-container{
+    height: 77%;
+}
+.like-container{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    height: 20%;
+    
+}
+.like-container button{
+    background-color: rgba(209,219,189,0);
+    border: 0px;
+}
