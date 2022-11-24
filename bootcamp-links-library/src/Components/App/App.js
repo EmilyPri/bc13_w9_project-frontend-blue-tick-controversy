@@ -26,6 +26,7 @@ function App() {
 
   function dropWeekChange(e) {
     setDropWeek(e.target.value);
+    console.log(dropWeek)
   }
   function dropSubjectChange(e) {
     setDropSubject(e.target.value);
@@ -33,6 +34,7 @@ function App() {
   function dropInpWeekChange(e) {
     setDropInpWeek(e.target.value);
   }
+  
   function dropInpLanguageChange(e) {
     setDropInpLanguage(e.target.value);
   }
@@ -77,7 +79,6 @@ function App() {
     const data = await response.json();
     setCardsArr(data.payload);
   }
-  console.log(cardsArr);
   async function subjectFetch(subject) {
     const response = await fetch(
       `http://localhost:3001/api/links?subject=${subject}`
@@ -94,9 +95,8 @@ function App() {
       week: dropInpWeek,
       subject: dropInpLanguage,
     };
-    setInputSection(inpSectionObj);
-    inputSectionPost(inputSection);
-    console.log(inputSection);
+    console.log(inpSectionObj)
+    inputSectionPost(inpSectionObj);
   }
 
   async function inputSectionPost(data) {
@@ -114,8 +114,6 @@ function App() {
  const ref = useRef(null)
  function scroll(scrollOffset){
   ref.current.scrollLeft += scrollOffset
-  ref.current.scrollLeft.behavior = "smooth"
-
  }
   return [
     <div className="app-container">
@@ -156,21 +154,21 @@ function App() {
             list="dropSubject"
             name="dropSubject"
             dataId="dropSubject"
-            value1="1"
+            value1="API"
             text1="API"
-            value2="2"
+            value2="CSS"
             text2="CSS"
-            value3="3"
+            value3="JavaScript"
             text3="JavaScript"
-            value4="4"
+            value4="React"
             text4="React"
-            value5="5"
+            value5="HTML"
             text5="HTML"
-            value6="6"
+            value6="General Dev"
             text6="General Dev"
-            value7="7"
+            value7="SQL"
             text7="SQL"
-            value8="8"
+            value8="Git"
             text8="Git"
           />
         </div>
