@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./App.css";
-// import Arrow from "../Arrow/Arrow";
 import Banner from "../Banner/Banner";
 import Button from "../Button/Button";
 import Card from "../Card/Card";
@@ -53,24 +52,6 @@ function App() {
   function selectRadioChange(e) {
     setSelectRadio(e.target.value);
   }
-
-  // function findBySectionButton(){
-  //   if(selectRadio==="week"){
-  //     let findBySectionObj = {
-  //       week: dropWeek
-  //     }
-  //     setFindBySection([...findBySection, findBySectionObj])
-
-  //     }
-  //     else{let findBySectionObj = {week: dropSubject}
-  //     setFindBySection([...findBySection, findBySectionObj])
-  //   }}
-  //   console.log(findBySection)
-  // useEffect(()=>{
-  //   findBySection()
-
-  // }, [()=>{likesHandler()}])
-
   function findBySectionButton() {
     if (selectRadio === "week") {
       console.log(dropWeek);
@@ -85,21 +66,15 @@ function App() {
     const data = await response.json();
     setCardsArr(data.payload);
     setLikes([...data.payload]);
-    // setLikesCount(data.payload.likes)
+  
   }
 
-  // function handleLike(buttonID){
-  //   const correctRow = likes.filter((link)=> link.id===buttonID)
-  //   const editedRow = {...correctRow, correctRow.likes + 1}
-  //   setLikes
-  // }
   async function subjectFetch(subject) {
     const response = await fetch(
       `http://localhost:3001/api/links?subject=${subject}`
     );
     const data = await response.json();
     setCardsArr(data.payload);
-    // setLikesCount(data.payload.likes);
   }
 
   function inpSectionButton() {
@@ -143,33 +118,6 @@ function App() {
     console.log(likesCount);
     setTimeout(findBySectionButton, 1000);
   }
-
-  // async function patchLike(id){
-  //   if (like === false){
-  //     const response = await fetch(`http://localhost:3001/api/links/${id}`, {
-  //     method: "PATCH",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(likes: likesCount + 1 ),
-  //   });
-  //   const result = await response.json();
-  //   console.log(result)
-  //   setLike(true)
-  //   if (like === true){
-  //     const response = await fetch(`http://localhost:3001/api/links/${id}`, {
-  //     method: "PATCH",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(),
-  //   });
-  //   const result = await response.json();
-  //   console.log(result)
-  //   }
-  //   }
-  // }
-
   const ref = useRef(null);
   function scroll(scrollOffset) {
     ref.current.scrollLeft += scrollOffset;
