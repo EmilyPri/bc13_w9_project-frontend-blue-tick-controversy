@@ -11,10 +11,10 @@ function Card(props) {
       <div className="card-middle">
         <button className="card-button" onClick={props.buttonCopy}>Copy to clipboard</button>
         <button className="card-button" onClick={props.buttonLink}>Take me there</button>
-
       </div>
       <div className="card-bottom">
         <p>{props.description}</p>
+        <button onClick={props.handleLike}>Likes : {props.numLikes}</button>
       </div>
     </div>,
   ];

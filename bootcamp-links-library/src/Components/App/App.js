@@ -23,6 +23,8 @@ function App() {
   const [inpLink, setInpLink] = useState("");
   const [inpDescription, setInpDescription] = useState("");
   const [inputSection, setInputSection] = useState([]);
+  // const [like, setLike] = useState(false)
+  // const [likesCount, setLikesCount] = useState(0)
 
   function dropWeekChange(e) {
     setDropWeek(e.target.value);
@@ -78,6 +80,7 @@ function App() {
     const response = await fetch(`http://localhost:3001/api/links/${week}`);
     const data = await response.json();
     setCardsArr(data.payload);
+    // setLikesCount(data.payload.likes)
   }
   async function subjectFetch(subject) {
     const response = await fetch(
@@ -85,6 +88,7 @@ function App() {
     );
     const data = await response.json();
     setCardsArr(data.payload);
+    // setLikesCount(data.payload.likes);
   }
 
   function inpSectionButton() {
@@ -110,6 +114,32 @@ function App() {
     const result = await response.json();
     return result;
   }
+
+  // async function patchLike(id){
+  //   if (like === false){
+  //     const response = await fetch(`http://localhost:3001/api/links/${id}`, {
+  //     method: "PATCH",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(likes: likesCount + 1 ),
+  //   });
+  //   const result = await response.json();
+  //   console.log(result)
+  //   setLike(true)
+  //   if (like === true){
+  //     const response = await fetch(`http://localhost:3001/api/links/${id}`, {
+  //     method: "PATCH",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(),
+  //   });
+  //   const result = await response.json();
+  //   console.log(result)
+  //   }
+  //   }
+  // }
   
  const ref = useRef(null)
  function scroll(scrollOffset){
@@ -185,8 +215,10 @@ function App() {
               title={card.title}
               description={card.description}
               link={card.link}
+              // numLikes={card.likes}
               buttonCopy={() => {navigator.clipboard.writeText(card.link)}}
               buttonLink={() => {window.open(card.link, '_blank').focus()}}
+              // buttonLike={() => patchLike(card.link_id)}
             />
           );
         })}
