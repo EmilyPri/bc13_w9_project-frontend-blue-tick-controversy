@@ -23,7 +23,7 @@ function App() {
   const [inpLink, setInpLink] = useState("");
   const [inpDescription, setInpDescription] = useState("");
   const [inputSection, setInputSection] = useState([]);
-  // const [like, setLike] = useState(false)
+  const [likes, setLikes] = useState([])
   // const [likesCount, setLikesCount] = useState(0)
 
   function dropWeekChange(e) {
@@ -80,8 +80,15 @@ function App() {
     const response = await fetch(`http://localhost:3001/api/links/${week}`);
     const data = await response.json();
     setCardsArr(data.payload);
+    setLikes([...data.payload])
     // setLikesCount(data.payload.likes)
   }
+
+  // function handleLike(buttonID){
+  //   const correctRow = likes.filter((link)=> link.id===buttonID)
+  //   const editedRow = {...correctRow, correctRow.likes + 1}
+  //   setLikes
+  // }
   async function subjectFetch(subject) {
     const response = await fetch(
       `http://localhost:3001/api/links?subject=${subject}`
@@ -114,6 +121,16 @@ function App() {
     const result = await response.json();
     return result;
   }
+  async function likesHandler(data, id){
+    const response = await fetch(`http://localhost:3001/api/links/${id}`, {
+                method: "PATCH",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data)});
+                const result = await response.json();
+                console.log(result)
+  }
 
   // async function patchLike(id){
   //   if (like === false){
@@ -140,6 +157,7 @@ function App() {
   //   }
   //   }
   // }
+
   
  const ref = useRef(null)
  function scroll(scrollOffset){
@@ -215,10 +233,11 @@ function App() {
               title={card.title}
               description={card.description}
               link={card.link}
-              // numLikes={card.likes}
+              numLikes={card.likes}
+              buttonID={card.link_id}
               buttonCopy={() => {navigator.clipboard.writeText(card.link)}}
               buttonLink={() => {window.open(card.link, '_blank').focus()}}
-              // buttonLike={() => patchLike(card.link_id)}
+              handleLike={() => likesHandler({ likes: card.likes + 1}, card.link_id)}
             />
           );
         })}

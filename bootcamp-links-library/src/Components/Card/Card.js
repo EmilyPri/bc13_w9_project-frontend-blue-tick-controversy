@@ -23,7 +23,7 @@ function Card(props) {
           <p>{props.description}</p>
         </div>
         <div className="like-container">
-          <button onClick={props.handleLike}>❤️ {props.numLikes}</button>
+          <button id={props.buttonID} onClick={props.handleLike}>❤️ {props.numLikes}</button>
         </div>
       </div>
     </div>,
