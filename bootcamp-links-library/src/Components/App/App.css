@@ -35,6 +35,9 @@ button:hover{
     gap: 10px;
     
 }
+.header-container select{
+    border-radius: 5px;
+}
 .dropdown-container{
     display: flex;
     gap: 5px;
