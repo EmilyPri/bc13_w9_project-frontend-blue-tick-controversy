@@ -13,10 +13,10 @@
 ░╚════╝░░╚════╝░╚═╝░░╚══╝░░░╚═╝░░░╚═╝░░╚═╝░╚════╝░░░░╚═╝░░░╚══════╝╚═╝░░╚═╝╚═════╝░░░░╚═╝░░░
 
 ## Table Of Contents
-*[General info](#general-info)
-*[Technologies](#technologies)
-*[Setup](#setup)
-*[Features](#features)
+* [General info](#general-info)
+* [Technologies](#technologies)
+* [Setup](#setup)
+* [Features](#features)
 
 
 ## General info
@@ -25,8 +25,8 @@ This app is called Bootcamp Links Library and is a resource for school of code b
 ## Technologies
 Project is created with:
 
-*React version: 18.2.0
-*Cypress version: 11.2.0
+* React version: 18.2.0
+* Cypress version: 11.2.0
 
 ## Setup
 To run this project, install it locally using npm:
