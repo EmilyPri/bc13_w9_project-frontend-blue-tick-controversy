@@ -200,9 +200,7 @@ function App() {
               buttonLink={() => {
                 window.open(card.link, "_blank").focus();
               }}
-              handleLike={() =>
-                likesHandler({ likes: card.likes + 1 }, card.link_id)
-              }
+              handleLike={likesHandler}
             />
           );
         })}
