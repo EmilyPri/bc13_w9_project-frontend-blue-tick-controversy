@@ -1,6 +1,19 @@
 import React from "react";
 import "./Card.css";
 function Card(props) {
+
+  async function likesHandler(data, id) {
+    const response = await fetch(`http://localhost:3001/api/links/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const result = await response.json();
+    setTimeout(props.findBySectionButton, 1000);
+  }
+
   return [
     <div className="card-container">
       <div className="card-top">
@@ -23,7 +36,7 @@ function Card(props) {
           <p>{props.description}</p>
         </div>
         <div className="like-container">
-          <button id={props.buttonID} onClick={()=> props.handleLike({ likes: props.numLikes + 1 }, props.buttonID)}>❤️ {props.numLikes}</button>
+          <button id={props.buttonID} onClick={()=> likesHandler({ likes: props.numLikes + 1 }, props.buttonID)}>❤️ {props.numLikes}</button>
         </div>
       </div>
     </div>,
