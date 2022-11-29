@@ -2,13 +2,6 @@ import React from "react";
 
 function Dropdown(props) {
   return [
-    // <input
-    //   className={props.className}
-    //   onChange={props.handleChange}
-    //   list={props.list}
-    //   name={props.name}
-    //   placeholder={props.placeholder}
-    // />,
 
     <select id={props.dataId} className={props.className} onChange={props.handleChange}>
       <option value="">{props.placeholder}</option>

@@ -9,7 +9,7 @@
 input::placeholder{
     color: #193441;
     font-weight: 600;
-    opacity: 0.7;
+    opacity: 0.9;
 }
 button{
     font-weight: 600;
@@ -140,10 +140,12 @@ button:hover{
 #dropInpWeek{
     width: 20%;
     background-color: #91aa9d;
+    color: rgba(0, 0, 0, 0.8);
 }
 #dropInpLanguage{
     width: 20%;
     background-color: #91aa9d;
+    color: rgba(0, 0, 0, 0.8);
 }
 .input-section-top{
     display: flex;
@@ -162,6 +164,7 @@ button:hover{
     background-color: #91aa9d;
     color: black;
     border-style: none;
+
 }
 
 .input-section-middle{

@@ -2,9 +2,9 @@ import React from "react";
 
 function RadioButtons(props) {
   return [
-    <input id="week" type="radio" value="week" name="dropdown" onChange={props.handleChange}/>,
+    <input aria-label="week-select" id="week" type="radio" value="week" name="dropdown" onChange={props.handleChange}/>,
     <p>⬅️ SELECT ➡️</p>,
-    <input id="subject" type="radio" value="subject" name="dropdown" onChange={props.handleChange}/>,
+    <input aria-label="subject-select" id="subject" type="radio" value="subject" name="dropdown" onChange={props.handleChange}/>,
   ];
 }
 
