@@ -5,7 +5,7 @@ import Button from "../Button/Button";
 import Card from "../Card/Card";
 import Dropdown from "../Dropdown/Dropdown";
 import Header from "../Header/Header";
-import Input from "../Input/Input";
+import InputField from "../InputField/InputField";
 import RadioButtons from "../RadioButtons/RadioButtons";
 
 function App() {
@@ -240,7 +240,7 @@ function App() {
               value8="8"
               text8="Week 8"
             />
-            <Input
+            <InputField
               className="title-input"
               handleChange={inpTitleChange}
               placeholder="INSERT TITLE"
@@ -270,10 +270,10 @@ function App() {
             />
           </div>
           <div className="input-section-middle">
-            <Input handleChange={inpLinkChange} placeholder="PASTE LINK" />
+            <InputField handleChange={inpLinkChange} placeholder="PASTE LINK" />
           </div>
           <div className="input-section-bottom">
-            <Input
+            <InputField
               handleChange={inpDescriptionChange}
               placeholder="ADD DESCRIPTION"
             />
