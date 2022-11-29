@@ -30,11 +30,12 @@ Project is created with:
 
 ## Setup
 To run this project, install it locally using npm:
+```
 cd /bootcamp-links-library
 npm install
 npm start
-
+```
 ## Features
-Post any useful link you find to share with your fellow bootcampers
-Search for posted links by week or by topic
-Give a link a like in order to sort links by most useful
+* Post any useful link you find to share with your fellow bootcampers
+* Search for posted links by week or by topic
+* Give a link a like in order to sort links by most useful
