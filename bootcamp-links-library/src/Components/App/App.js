@@ -3,7 +3,8 @@ import "./App.css";
 import Banner from "../Banner/Banner";
 import Button from "../Button/Button";
 import Card from "../Card/Card";
-import Dropdown from "../Dropdown/Dropdown";
+import DropdownWeek from "../DropdownWeek/DropdownWeek";
+import DropdownSubject from "../DropdownSubject/DropdownSubject";
 import Header from "../Header/Header";
 import InputField from "../InputField/InputField";
 import RadioButtons from "../RadioButtons/RadioButtons";
@@ -24,11 +25,14 @@ function App() {
   const [inputSection, setInputSection] = useState([]);
   const [likes, setLikes] = useState([]);
   const [likesCount, setLikesCount] = useState(0);
-
-  function dropWeekChange(e) {
+/**
+ * This is a function which selects the week
+ */
+ 
+function dropWeekChange(e) {
     setDropWeek(e.target.value);
     console.log(dropWeek);
-  }
+  } 
   function dropSubjectChange(e) {
     setDropSubject(e.target.value);
   }
@@ -127,56 +131,20 @@ function App() {
       <div className="header-container">
         <Header h1="BOOTCAMP LINKS LIBRARY" />
         <div className="dropdown-container">
-          <Dropdown
-            className="dropWeek"
-            handleChange={dropWeekChange}
-            placeholder="SEARCH BY WEEK"
+          <DropdownWeek handleChange={dropWeekChange}
+            dataId="dropWeek" 
+            className="dropWeek" 
+            placeholder="SEARCH BY WEEK" 
             list="dropWeek"
-            name="dropWeek"
-            dataId="dropWeek"
-            value1="1"
-            text1="Week 1"
-            value2="2"
-            text2="Week 2"
-            value3="3"
-            text3="Week 3"
-            value4="4"
-            text4="Week 4"
-            value5="5"
-            text5="Week 5"
-            value6="6"
-            text6="Week 6"
-            value7="7"
-            text7="Week 7"
-            value8="8"
-            text8="Week 8"
           />
           <div className="radio-buttons-container">
             <RadioButtons handleChange={selectRadioChange} />
           </div>
-          <Dropdown
-            className="dropSubject"
-            handleChange={dropSubjectChange}
-            placeholder="SEARCH BY SUBJECT"
+          <DropdownSubject handleChange={dropSubjectChange}
+            placeholder="SEARCH BY SUBJECT" 
             list="dropSubject"
-            name="dropSubject"
             dataId="dropSubject"
-            value1="API"
-            text1="API"
-            value2="CSS"
-            text2="CSS"
-            value3="JavaScript"
-            text3="JavaScript"
-            value4="React"
-            text4="React"
-            value5="HTML"
-            text5="HTML"
-            value6="General Dev"
-            text6="General Dev"
-            value7="SQL"
-            text7="SQL"
-            value8="Git"
-            text8="Git"
+            className="dropSubject"
           />
         </div>
         <div className="button-go-container">
@@ -217,56 +185,24 @@ function App() {
         </div>
         <div className="input-section-container">
           <div className="input-section-top">
-            <Dropdown
+            <DropdownWeek 
               handleChange={dropInpWeekChange}
               placeholder="CHOOSE WEEK"
               list="dropInpWeek"
               name="dropInpWeek"
               dataId="dropInpWeek"
-              value1="1"
-              text1="Week 1"
-              value2="2"
-              text2="Week 2"
-              value3="3"
-              text3="Week 3"
-              value4="4"
-              text4="Week 4"
-              value5="5"
-              text5="Week 5"
-              value6="6"
-              text6="Week 6"
-              value7="7"
-              text7="Week 7"
-              value8="8"
-              text8="Week 8"
-            />
+               />
             <InputField
               className="title-input"
               handleChange={inpTitleChange}
               placeholder="INSERT TITLE"
             />
-            <Dropdown
+            <DropdownSubject
               handleChange={dropInpLanguageChange}
               placeholder="CHOOSE SUBJECT"
               list="dropInpLanguage"
               name="dropInpLanguage"
               dataId="dropInpLanguage"
-              value1="1"
-              text1="API"
-              value2="2"
-              text2="CSS"
-              value3="3"
-              text3="JavaScript"
-              value4="4"
-              text4="React"
-              value5="5"
-              text5="HTML"
-              value6="6"
-              text6="General Dev"
-              value7="7"
-              text7="SQL"
-              value8="8"
-              text8="Git"
             />
           </div>
           <div className="input-section-middle">
