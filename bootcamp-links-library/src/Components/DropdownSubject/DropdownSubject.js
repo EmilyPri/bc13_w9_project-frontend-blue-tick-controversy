@@ -2,7 +2,7 @@ import React from "react";
 
 function Dropdown(props) {
   return [
-     <select id="dropSubject" className={props.className} onChange={props.handleChange} placeholder="SEARCH BY SUBJECT" list="dropSubject">
+     <select id={props.dataId} className={props.className} onChange={props.handleChange} placeholder={props.placeholder} list={props.list}>
       <option value="">{props.placeholder}</option>
       <option value="API">API</option>
       <option value="CSS">CSS</option>

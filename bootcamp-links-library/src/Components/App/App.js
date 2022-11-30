@@ -12,7 +12,6 @@ import RadioButtons from "../RadioButtons/RadioButtons";
 function App() {
   const [dropWeek, setDropWeek] = useState("");
   const [dropSubject, setDropSubject] = useState("");
-  const [findBySection, setFindBySection] = useState("");
   const [selectRadio, setSelectRadio] = useState("");
 
   const [cardsArr, setCardsArr] = useState([]);
@@ -22,17 +21,11 @@ function App() {
   const [inpTitle, setInpTitle] = useState("");
   const [inpLink, setInpLink] = useState("");
   const [inpDescription, setInpDescription] = useState("");
-  const [inputSection, setInputSection] = useState([]);
-  const [likes, setLikes] = useState([]);
-  const [likesCount, setLikesCount] = useState(0);
-/**
- * This is a function which selects the week
- */
- 
-function dropWeekChange(e) {
+
+
+  function dropWeekChange(e) {
     setDropWeek(e.target.value);
-    console.log(dropWeek);
-  } 
+  }
   function dropSubjectChange(e) {
     setDropSubject(e.target.value);
   }
@@ -69,7 +62,6 @@ function dropWeekChange(e) {
     const response = await fetch(`http://localhost:3001/api/links/${week}`);
     const data = await response.json();
     setCardsArr(data.payload);
-    setLikes([...data.payload]);
   
   }
 
@@ -109,18 +101,6 @@ function dropWeekChange(e) {
     });
     const result = await response.json();
     return result;
-  }
-  async function likesHandler(data, id) {
-    const response = await fetch(`http://localhost:3001/api/links/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-    const result = await response.json();
-    console.log(likesCount);
-    setTimeout(findBySectionButton, 1000);
   }
   const ref = useRef(null);
   function scroll(scrollOffset) {
@@ -168,9 +148,7 @@ function dropWeekChange(e) {
               buttonLink={() => {
                 window.open(card.link, "_blank").focus();
               }}
-              handleLike={() =>
-                likesHandler({ likes: card.likes + 1 }, card.link_id)
-              }
+              findBySectionButton={findBySectionButton}
             />
           );
         })}
