@@ -10,25 +10,60 @@ import InputField from "../InputField/InputField";
 import RadioButtons from "../RadioButtons/RadioButtons";
 
 function App() {
+//Search section- Header
   const [dropWeek, setDropWeek] = useState("");
   const [dropSubject, setDropSubject] = useState("");
   const [selectRadio, setSelectRadio] = useState("");
-
+//Display section- Main
   const [cardsArr, setCardsArr] = useState([]);
-
+//Input section- Footer
   const [dropInpWeek, setDropInpWeek] = useState("");
   const [dropInpLanguage, setDropInpLanguage] = useState("");
   const [inpTitle, setInpTitle] = useState("");
   const [inpLink, setInpLink] = useState("");
   const [inpDescription, setInpDescription] = useState("");
 
-
+//Search section- Header
   function dropWeekChange(e) {
     setDropWeek(e.target.value);
   }
   function dropSubjectChange(e) {
     setDropSubject(e.target.value);
   }
+ function selectRadioChange(e) {
+    setSelectRadio(e.target.value);
+  }
+  function findBySectionButton() {
+    if (selectRadio === "week") {
+      console.log(dropWeek);
+      weekFetch(dropWeek);
+    } else {
+      subjectFetch(dropSubject);
+    }
+  }
+
+
+ //Display section- Main
+  async function weekFetch(week) {
+    const response = await fetch(`http://localhost:3001/api/links/${week}`);
+    const data = await response.json();
+    setCardsArr(data.payload);
+  
+  }
+  async function subjectFetch(subject) {
+    const response = await fetch(
+      `http://localhost:3001/api/links?subject=${subject}`
+    );
+    const data = await response.json();
+    setCardsArr(data.payload);
+  }
+  //Controls scroll buttons for cards
+  const ref = useRef(null);
+  function scroll(scrollOffset) {
+    ref.current.scrollLeft += scrollOffset;
+  }
+
+//Input section- Footer
   function dropInpWeekChange(e) {
     setDropInpWeek(e.target.value);
   }
@@ -44,35 +79,7 @@ function App() {
   function inpDescriptionChange(e) {
     setInpDescription(e.target.value);
   }
-
-  function selectRadioChange(e) {
-    setSelectRadio(e.target.value);
-  }
-  function findBySectionButton() {
-    if (selectRadio === "week") {
-      console.log(dropWeek);
-      weekFetch(dropWeek);
-    } else {
-      subjectFetch(dropSubject);
-    }
-  }
-
-  async function weekFetch(week) {
-    const response = await fetch(`http://localhost:3001/api/links/${week}`);
-    const data = await response.json();
-    setCardsArr(data.payload);
-  
-  }
-
-  async function subjectFetch(subject) {
-    const response = await fetch(
-      `http://localhost:3001/api/links?subject=${subject}`
-    );
-    const data = await response.json();
-    setCardsArr(data.payload);
-  }
-
-  function inpSectionButton() {
+ function inpSectionButton() {
     let inpSectionObj = {
       link: inpLink,
       title: inpTitle,
@@ -89,7 +96,6 @@ function App() {
       inputSectionPost(inpSectionObj);
     }
   }
-
   async function inputSectionPost(data) {
     const response = await fetch("http://localhost:3001/api/links/", {
       method: "POST",
@@ -101,13 +107,7 @@ function App() {
     const result = await response.json();
     return result;
   }
-
-  //Controls scroll buttons for cards
-  const ref = useRef(null);
-  function scroll(scrollOffset) {
-    ref.current.scrollLeft += scrollOffset;
-  }
-
+  //Renders App
   return [
     <div className="app-container">
       <div className="header-container">
