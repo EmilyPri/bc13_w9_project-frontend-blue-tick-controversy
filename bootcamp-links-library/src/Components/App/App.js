@@ -32,7 +32,6 @@ function App() {
   function dropInpWeekChange(e) {
     setDropInpWeek(e.target.value);
   }
-
   function dropInpLanguageChange(e) {
     setDropInpLanguage(e.target.value);
   }
@@ -102,10 +101,13 @@ function App() {
     const result = await response.json();
     return result;
   }
+
+  //Controls scroll buttons for cards
   const ref = useRef(null);
   function scroll(scrollOffset) {
     ref.current.scrollLeft += scrollOffset;
   }
+
   return [
     <div className="app-container">
       <div className="header-container">
