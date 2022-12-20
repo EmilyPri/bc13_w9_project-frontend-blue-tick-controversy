@@ -4,7 +4,7 @@ function Card(props) {
 //likesHandler enables the user to add likes to a card and stores the data in the DB.
 //setTimeout is used because the number of likes needs to re-render in the DOM to display the correct number.
   async function likesHandler(data, id) {
-    const response = await fetch(`http://localhost:3001/api/links/${id}`, {
+    const response = await fetch(`http://localhost:3003/api/links/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -12,14 +12,15 @@ function Card(props) {
       body: JSON.stringify(data),
     });
     const result = await response.json();
-    setTimeout(props.findBySectionButton, 1000);
+    // setTimeout(props.findBySectionButton, 1000);
+    props.findBySectionButton();
   }
 
   return [
     <div className="card-container">
       <div className="card-top">
         <div>
-          <img src={props.subjectIcon} />
+          <img src={props.subjectIcon} alt="icon"/>
         </div>
         <h1>{props.title}</h1>
       </div>

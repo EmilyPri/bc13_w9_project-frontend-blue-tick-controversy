@@ -45,14 +45,14 @@ function App() {
 
  //Display section- Main
   async function weekFetch(week) {
-    const response = await fetch(`http://localhost:3001/api/links/${week}`);
+    const response = await fetch(`https://week9projectbackend.onrender.com/${week}`);
     const data = await response.json();
     setCardsArr(data.payload);
   
   }
   async function subjectFetch(subject) {
     const response = await fetch(
-      `http://localhost:3001/api/links?subject=${subject}`
+      `https://week9projectbackend.onrender.com?subject=${subject}`
     );
     const data = await response.json();
     setCardsArr(data.payload);
@@ -97,7 +97,7 @@ function App() {
     }
   }
   async function inputSectionPost(data) {
-    const response = await fetch("http://localhost:3001/api/links/", {
+    const response = await fetch("https://week9projectbackend.onrender.com/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
