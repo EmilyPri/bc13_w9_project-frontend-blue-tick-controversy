@@ -10,49 +10,64 @@ import InputField from "../InputField/InputField";
 import RadioButtons from "../RadioButtons/RadioButtons";
 
 function App() {
-//Search section- Header
+  //Search section- Header
+  const [searchTermInput, setSearchTermInput] = useState("React");
   const [dropWeek, setDropWeek] = useState("");
   const [dropSubject, setDropSubject] = useState("");
   const [selectRadio, setSelectRadio] = useState("");
-//Display section- Main
+  //Display section- Main
   const [cardsArr, setCardsArr] = useState([]);
-//Input section- Footer
+  //Input section- Footer
   const [dropInpWeek, setDropInpWeek] = useState("");
   const [dropInpLanguage, setDropInpLanguage] = useState("");
   const [inpTitle, setInpTitle] = useState("");
   const [inpLink, setInpLink] = useState("");
   const [inpDescription, setInpDescription] = useState("");
 
-//Search section- Header
+  //Search section- Header
+  
+  function handleSearchTerm(e){
+  setSearchTermInput(e.target.value)
+  }
+
+  function callSearchByTopic(){
+  searchByTopic(searchTermInput)
+   }
+
   function dropWeekChange(e) {
     setDropWeek(e.target.value);
   }
   function dropSubjectChange(e) {
     setDropSubject(e.target.value);
   }
- function selectRadioChange(e) {
+  function selectRadioChange(e) {
     setSelectRadio(e.target.value);
   }
   function findBySectionButton() {
     if (selectRadio === "week") {
-      console.log(dropWeek);
-      weekFetch(dropWeek);
+            weekFetch(dropWeek);
     } else {
       subjectFetch(dropSubject);
     }
   }
 
+  //Display section- Main
 
- //Display section- Main
+
+async function searchByTopic(searchTerm) {
+  const response = await fetch(`http://localhost:3001/api/links?searchTerm=${searchTerm}`)
+  const data = await response.json();
+  setCardsArr(data.payload);
+}
+
   async function weekFetch(week) {
-    const response = await fetch(`http://localhost:3003/api/links/${week}`);
+    const response = await fetch(`http://localhost:3001/api/links/${week}`);
     const data = await response.json();
     setCardsArr(data.payload);
-  
   }
   async function subjectFetch(subject) {
     const response = await fetch(
-      `http://localhost:3003/api/links?subject=${subject}`
+      `http://localhost:3001/api/links?subject=${subject}`
     );
     const data = await response.json();
     setCardsArr(data.payload);
@@ -63,7 +78,7 @@ function App() {
     ref.current.scrollLeft += scrollOffset;
   }
 
-//Input section- Footer
+  //Input section- Footer
   function dropInpWeekChange(e) {
     setDropInpWeek(e.target.value);
   }
@@ -79,7 +94,7 @@ function App() {
   function inpDescriptionChange(e) {
     setInpDescription(e.target.value);
   }
- function inpSectionButton() {
+  function inpSectionButton() {
     let inpSectionObj = {
       link: inpLink,
       title: inpTitle,
@@ -87,8 +102,7 @@ function App() {
       week: dropInpWeek,
       subject: dropInpLanguage,
     };
-    console.log(inpSectionObj);
-    if (inpSectionObj.title.length > 35) {
+        if (inpSectionObj.title.length > 35) {
       alert("Title should be Max 35 characters long!");
     } else if (inpSectionObj.description.length > 150) {
       alert("Description should be Max 150 characters long!");
@@ -97,7 +111,7 @@ function App() {
     }
   }
   async function inputSectionPost(data) {
-    const response = await fetch("http://localhost:3003/api/links/", {
+    const response = await fetch("http://localhost:3001/api/links/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -112,18 +126,28 @@ function App() {
     <div className="app-container">
       <div className="header-container">
         <Header h1="BOOTCAMP LINKS LIBRARY" />
+        <div className="new-search-bar">
+          <InputField
+            handleChange={handleSearchTerm}
+            className="input-field"
+            placeholder="Search by topic"
+            onEnter={callSearchByTopic}
+          />
+        </div>
         <div className="dropdown-container">
-          <DropdownWeek handleChange={dropWeekChange}
-            dataId="dropWeek" 
-            className="dropWeek" 
-            placeholder="SEARCH BY WEEK" 
+          <DropdownWeek
+            handleChange={dropWeekChange}
+            dataId="dropWeek"
+            className="dropWeek"
+            placeholder="SEARCH BY WEEK"
             list="dropWeek"
           />
           <div className="radio-buttons-container">
             <RadioButtons handleChange={selectRadioChange} />
           </div>
-          <DropdownSubject handleChange={dropSubjectChange}
-            placeholder="SEARCH BY SUBJECT" 
+          <DropdownSubject
+            handleChange={dropSubjectChange}
+            placeholder="SEARCH BY SUBJECT"
             list="dropSubject"
             dataId="dropSubject"
             className="dropSubject"
@@ -165,13 +189,13 @@ function App() {
         </div>
         <div className="input-section-container">
           <div className="input-section-top">
-            <DropdownWeek 
+            <DropdownWeek
               handleChange={dropInpWeekChange}
               placeholder="CHOOSE WEEK"
               list="dropInpWeek"
               name="dropInpWeek"
               dataId="dropInpWeek"
-               />
+            />
             <InputField
               className="title-input"
               handleChange={inpTitleChange}
