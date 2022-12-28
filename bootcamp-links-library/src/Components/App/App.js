@@ -8,6 +8,7 @@ import DropdownSubject from "../DropdownSubject/DropdownSubject";
 import Header from "../Header/Header";
 import InputField from "../InputField/InputField";
 import RadioButtons from "../RadioButtons/RadioButtons";
+import AnimatedMulti from "../DropdownSelect/DropdownSelect"
 
 function App() {
   //Search section- Header
@@ -15,6 +16,7 @@ function App() {
   const [dropWeek, setDropWeek] = useState("");
   const [dropSubject, setDropSubject] = useState("");
   const [selectRadio, setSelectRadio] = useState("");
+  const [subjectFilter, setSubjectFilter] = useState([{value: "", label:""}]);
   //Display section- Main
   const [cardsArr, setCardsArr] = useState([]);
   //Input section- Footer
@@ -39,7 +41,16 @@ function App() {
   }
   function dropSubjectChange(e) {
     setDropSubject(e.target.value);
+    console.log(dropSubject)
   }
+  
+  function filterBySubject(e) {
+    console.log(e)
+    setSubjectFilter(e);
+    console.log(subjectFilter)
+    //subjectFetch(dropSubject)
+  }
+
   function selectRadioChange(e) {
     setSelectRadio(e.target.value);
   }
@@ -54,6 +65,12 @@ function App() {
   //Display section- Main
 
 
+async function filterBySubject(){
+  const response = await fetch(``)
+  const data = await response.json();
+  setCardsArr()
+}
+
 async function searchByTopic(searchTerm) {
   const response = await fetch(`http://localhost:3001/api/links?searchTerm=${searchTerm}`)
   const data = await response.json();
@@ -64,6 +81,7 @@ async function searchByTopic(searchTerm) {
     const response = await fetch(`http://localhost:3001/api/links/${week}`);
     const data = await response.json();
     setCardsArr(data.payload);
+    console.log(data.payload)
   }
   async function subjectFetch(subject) {
     const response = await fetch(
@@ -134,6 +152,9 @@ async function searchByTopic(searchTerm) {
             onEnter={callSearchByTopic}
           />
         </div>
+        <div><AnimatedMulti
+          handleChange={filterBySubject}
+                              /></div>
         <div className="dropdown-container">
           <DropdownWeek
             handleChange={dropWeekChange}
