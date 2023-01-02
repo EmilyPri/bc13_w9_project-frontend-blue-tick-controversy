@@ -1,8 +1,9 @@
 import React from "react";
 import "./Card.css";
+import logo from "../../Assets/smallStars.png";
 function Card(props) {
-//likesHandler enables the user to add likes to a card and stores the data in the DB.
-//setTimeout is used because the number of likes needs to re-render in the DOM to display the correct number.
+  //likesHandler enables the user to add likes to a card and stores the data in the DB.
+  //setTimeout is used because the number of likes needs to re-render in the DOM to display the correct number.
   async function likesHandler(data, id) {
     const response = await fetch(`http://localhost:3003/api/links/${id}`, {
       method: "PATCH",
@@ -19,10 +20,13 @@ function Card(props) {
   return [
     <div className="card-container">
       <div className="card-top">
+        {/* <div className="logo-container">
+          <img src={logo} alt="stars" />
+          { <img src={props.subjectIcon} alt="icon"/>}
+        </div> */}
         <div>
-          <img src={props.subjectIcon} alt="icon"/>
+          <h1>{props.title}</h1>
         </div>
-        <h1>{props.title}</h1>
       </div>
 
       <div className="card-middle">
@@ -38,7 +42,14 @@ function Card(props) {
           <p>{props.description}</p>
         </div>
         <div className="like-container">
-          <button id={props.buttonID} onClick={()=> likesHandler({ likes: props.numLikes + 1 }, props.buttonID)}>❤️ {props.numLikes}</button>
+          <button
+            id={props.buttonID}
+            onClick={() =>
+              likesHandler({ likes: props.numLikes + 1 }, props.buttonID)
+            }
+          >
+            ❤️ {props.numLikes}
+          </button>
         </div>
       </div>
     </div>,

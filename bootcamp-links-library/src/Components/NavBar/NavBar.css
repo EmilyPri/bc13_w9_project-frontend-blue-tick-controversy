@@ -1,16 +1,35 @@
 .nav-bar{
-    background-color: #896A67;
-    font-family: "Petrona-Black";
-    color: white;
-    width: 100vw; 
-    height: 27px;
-    display: flex; 
-    align-items: center;
+    background-color: #FEFAE0;
+    font-family: "Figtree";
+    color: #330F0A;
+    height: auto;
+    font-size: 30px;
     text-align: center;
+    width: 90vw;
+    display: inline-grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     justify-content: center;
-    border: 20px;
+    }
+
+.home-link{
+    color: #362310;
+    text-decoration: none;
+grid-column-start: 4;
+grid-column-end: 4;
 }
 
+.post-link{
+    color: #362310;
+    text-decoration: none;
+    grid-column-start: 5;
+    grid-column-end: 5;
+}
 
+.about-link{
+    color: #362310;
+    text-decoration: none;
+    grid-column-start: 6;
+    grid-column-end: 6;
+}
    
 

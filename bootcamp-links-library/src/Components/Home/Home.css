@@ -1,22 +1,77 @@
-@font-face {
-    font-family: 'Petrona-Black';
-    src: url('../../Assets/Petrona/static/Petrona-Light.ttf');
-  }
-.big-app-container{
-    background-color: aqua;
-    max-width:100vw;
-    justify-content:center;
-}
 .app-container{
+    margin: 50px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column; 
+    gap: 30px;
+    border-radius: 1%;
+    justify-content:center;
     max-width: 90vw;
-    background-color: #F8F5F1;
-    padding: 10px;
+    background-color: #FEFAE0; 
+    padding: 50px;
 }
-/* input::placeholder{
+
+.navBar-container{
+    position: relative;
+}
+
+.header-container{
+    background-color: #FEFAE0;
+    position: relative;
+    height: 300px;
+    display: flex;
+    flex-direction:row !important;
+}
+
+.title-container{
+    position: relative;
+    left: 650px;
+    display:flex;
+    flex-direction: column;
+    gap: 0px;
+    margin:0px;
+    padding: 0px;
+}
+
+.searchBar-container{
+    position: absolute;
+    right: 750px;
+    bottom: 65px;
+    justify-content: center;
+    justify-items: center;
+    width:40vw;
+    display: flex;
+    flex-direction:row;
+    gap: 15px;
+}
+
+.searchByTopic-container{
+    /* grid-column-start: 2;
+    grid-column-end: 2; */
+    justify-content: center;
+    }
+
+/* .subject-filter-container{
+    grid-column-start: 4;
+    grid-column-end: 4; 
+    }
+
+.subject-filter-container{
+    grid-column-start: 5;
+    grid-column-end: 5;
+    } */
+
+ .cards-container{
+   
+    padding: 50px;
+    background-color: #FEFAE0;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 60px;
+    margin: auto;} 
+
+/* 
+input::placeholder{
     color: #193441;
     font-weight: 600;
     opacity: 0.9;
@@ -76,9 +131,7 @@ button:hover{
 .dropSubject{
     width: 175px;
     background-color: #fcfff5;
-} */
-
-/* .cards-container{
+} .cards-container{
     display: flex;
     align-items: center;
    
@@ -122,93 +175,4 @@ button:hover{
     font-size: larger;
     margin-bottom: 15px;
     
-}
-.footer-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: fixed;
-    bottom: 3vh;
-    color: #193441
-
-    
-}
-.input-section-container{
-   
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 170px;
-    width: 90vw;
-    background-color: #fcfff5;
-    border-radius: 6px;
-}
-
-#dropInpWeek{
-    width: 20%;
-    background-color: #91aa9d;
-    color: rgba(0, 0, 0, 0.8);
-}
-#dropInpLanguage{
-    width: 20%;
-    background-color: #91aa9d;
-    color: rgba(0, 0, 0, 0.8);
-} */
-/* .input-section-top{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 90%;
-  
-    padding: 10px;
-    margin: 0 auto;
-    color: #193441;
-    
-    
-}
-.input-section-top input{
-    width: 50%;
-    background-color: #91aa9d;
-    color: black;
-    border-style: none;
-
-}
-
-.input-section-middle{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 90%;
-    padding: 10px;
-    margin: 0 auto;
-    color: #193441
-
-}
-.input-section-middle input{
-    width: 100%;
-    background-color: #D1DBBD;
-    border-style: none;
-    
-}
-.input-section-bottom{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    gap:1%;
-    width: 90%;
-    margin: 0 auto;
-    color: #193441
-}
-.input-section-bottom input{
-    width: 90%;
-    background-color: #91aa9d;
-    border-style: none;
-}
-
-.input-section-bottom button{
-    width: 10%;
-    color: #193441;
-    background-color: #D1DBBD;
-}
- */
+}  */

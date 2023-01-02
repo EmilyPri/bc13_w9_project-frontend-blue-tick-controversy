@@ -1,1 +1,30 @@
+@font-face {
+    font-family: 'Petrona-Black';
+    src: url('../../Assets/Petrona/static/Petrona-Light.ttf');
+  }
 
+  @font-face {
+    font-family: 'Antic';
+    src: url('../../Assets/Antic/Antic-Regular.ttf');
+  }
+
+  @font-face {
+    font-family: 'Fredericka';
+    src: url('../../Assets/Fredericka/FrederickatheGreat-Regular.ttf');
+  }
+
+  @font-face {
+    font-family: 'Forum';
+    src: url('../../Assets/Forum/Forum-Regular.ttf');
+  }
+
+  @font-face {
+    font-family: 'Figtree';
+    src: url('../../Assets/Figtree/Figtree-VariableFont_wght.ttf');
+  }
+
+  .App{
+    margin-top: 0px;
+  }
+
+  *{justify-content: center;}

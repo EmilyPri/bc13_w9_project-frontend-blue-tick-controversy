@@ -1,10 +1,10 @@
-h1{
-    font-family: 'Petrona-Black';
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #D1DBBD;
-    width: 100vw;
-    height: 60px;
-    text-align: center;
+.wrapper{
+     white-space: pre-wrap!important}
+    h1{
+        font-family: 'Forum';
+            font-size: 80px;
+    color: #896A67;
+    background-color: #FEFAE0;
+    text-align: right;
+    margin-right: 100px;
 }

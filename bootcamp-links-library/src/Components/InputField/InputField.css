@@ -1,0 +1,12 @@
+.input-field{
+    color: black;
+    height: 35px;
+    width: 300px;
+    font-family: 'Figtree';
+    font-size: 20px;
+    text-align: center;
+    border-width: 3px;
+    border-color: #8D6B94;
+    border-radius: 2px;
+
+}

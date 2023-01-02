@@ -4,6 +4,9 @@ import Banner from "../Banner/Banner.js";
 import Button from "../Button/Button.js";
 import InputField from "../InputField/InputField.js";
 import DropdownSubject from "../DropdownSubject/DropdownSubject.js";
+import NavBar from "../NavBar/NavBar.js";
+import "./Input.css";
+import "../InputField/InputField.css";
 
 export default function Input() {
   //Input section- Footer
@@ -57,42 +60,65 @@ export default function Input() {
     return result;
   }
 
-  <div className="footer-container">
-    <div className="banner-container">
-      <Banner />
-    </div>
-    <div className="input-section-container">
-      <div className="input-section-top">
-        <DropdownWeek
-          handleChange={dropInpWeekChange}
-          placeholder="CHOOSE WEEK"
-          list="dropInpWeek"
-          name="dropInpWeek"
-          dataId="dropInpWeek"
-        />
-        <InputField
-          className="title-input"
-          handleChange={inpTitleChange}
-          placeholder="INSERT TITLE"
-        />
-        <DropdownSubject
-          handleChange={dropInpLanguageChange}
-          placeholder="CHOOSE SUBJECT"
-          list="dropInpLanguage"
-          name="dropInpLanguage"
-          dataId="dropInpLanguage"
-        />
+  return [
+    <div className="input-container">
+      <div>
+        <NavBar />
       </div>
-      <div className="input-section-middle">
-        <InputField handleChange={inpLinkChange} placeholder="PASTE LINK" />
+      <div className="banner-container">
+        <Banner />
       </div>
-      <div className="input-section-bottom">
-        <InputField
-          handleChange={inpDescriptionChange}
-          placeholder="ADD DESCRIPTION"
-        />
-        <Button buttonText="Submit" buttonClick={inpSectionButton} />
+      <p>
+        We're always keen to expand our library. Submit your resource below with
+        a handy explanation to support your fellow bootcampers on their learning
+        journey!
+      </p>
+      <div className="input-section-container">
+        <div className="input-section-top">
+          <DropdownWeek
+            handleChange={dropInpWeekChange}
+            placeholder="CHOOSE WEEK"
+            list="dropInpWeek"
+            name="dropInpWeek"
+            className="dropdown"
+            dataId="dropInpWeek"
+          />
+          <InputField
+            className="input-field"
+            handleChange={inpTitleChange}
+            placeholder="INSERT TITLE"
+          />
+          <DropdownSubject
+            handleChange={dropInpLanguageChange}
+            placeholder="CHOOSE SUBJECT"
+            list="dropInpLanguage"
+            name="dropInpLanguage"
+            dataId="dropInpLanguage"
+            className="dropdown"
+          />
+        </div>
+        <div className="input-section-middle">
+          <InputField
+            className="input-field"
+            handleChange={inpLinkChange}
+            placeholder="PASTE LINK"
+          />
+        </div>
+        <div className="input-section-bottom">
+          <InputField
+            className="input-field"
+            handleChange={inpDescriptionChange}
+            placeholder="ADD DESCRIPTION"
+          />
+        </div>
+        <div className="button-container">
+          <Button
+            buttonText="Submit"
+            buttonClick={inpSectionButton}
+            className="submit-button"
+          />
+        </div>
       </div>
-    </div>
-  </div>;
+    </div>,
+  ];
 }

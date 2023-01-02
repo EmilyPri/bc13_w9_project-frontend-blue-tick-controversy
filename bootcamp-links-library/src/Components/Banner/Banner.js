@@ -1,7 +1,8 @@
 import React from "react";
+import "./Banner.css";
 
 function Banner() {
-  return <p>ADD YOUR OWN</p>
+  return <p className="banner">ADD TO THE LINKS LIBRARY!</p>;
 }
 
 export default Banner;

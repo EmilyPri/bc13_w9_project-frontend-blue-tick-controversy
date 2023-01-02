@@ -1,8 +1,15 @@
 import React from "react";
+import "./DropdownSubject.css";
 
 function DropdownSubject(props) {
   return [
-     <select id={props.dataId} className={props.className} onChange={props.handleChange} placeholder={props.placeholder} list={props.list}>
+    <select
+      id={props.dataId}
+      className={props.className}
+      onChange={props.handleChange}
+      placeholder={props.placeholder}
+      list={props.list}
+    >
       <option value="">{props.placeholder}</option>
       <option value="1">API</option>
       <option value="2">CSS</option>

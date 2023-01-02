@@ -1,4 +1,5 @@
 import React from "react";
+import "./InputField.css";
 
 function InputField(props) {
   return (
@@ -8,8 +9,8 @@ function InputField(props) {
       type="text"
       placeholder={props.placeholder}
       onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                    props.onEnter();
+        if (e.key === "Enter") {
+          props.onEnter();
         }
       }}
     />
